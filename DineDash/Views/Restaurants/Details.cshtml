@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model DineDash.Models.Restaurant
+
+<h2>Restaurant Details</h2>
+<hr/>
+<h3> @Html.DisplayNameFor(model => model.Name) : @Html.DisplayFor(model => model.Name)</h3>
+
+@* <h3> @Html.DisplayNameFor(model => model.Cuisine) : @Html.DisplayFor(model => model.Cusine)</h3> *@
+
+
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
