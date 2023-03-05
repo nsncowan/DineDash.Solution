@@ -15,7 +15,22 @@ namespace DineDash.Controllers
     {
       _db = db;
     }
+    public ActionResult Index()
+    {
+      List<Restaurant> model = _db.Restaurants.ToList();
+      return View(model);
+    }
 
-    
+    public ActionResult Create()
+    {
+      return View();
+    }
+
+    public ActionResult Create(Restaurant restaurant)
+    {
+      _db.Restaurant.Add(restaurant);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
