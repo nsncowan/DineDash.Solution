@@ -11,5 +11,6 @@
 @* <h3> @Html.DisplayNameFor(model => model.Cuisine) : @Html.DisplayFor(model => model.Cusine)</h3> *@
 
 
+<p>@Html.ActionLink("Delete Item", "Delete", new { id = Model.RestaurantId })</p>
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
