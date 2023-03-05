@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Collections.Generic;
-using AnimalShelter.Models;
+using DineDash.Models;
 
 
 namespace DineDash.Controllers
@@ -26,9 +26,10 @@ namespace DineDash.Controllers
       return View();
     }
 
+    [HttpPost]
     public ActionResult Create(Restaurant restaurant)
     {
-      _db.Restaurant.Add(restaurant);
+      _db.Restaurants.Add(restaurant);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

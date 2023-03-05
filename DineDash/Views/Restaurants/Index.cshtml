@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+
+@using DineDash.Models;
+
+<h1>Restaurants</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No Restaurants have been added yet!</h3>
+} 
+
+@foreach (Restaurant restaurant in Model)
+{
+  <li>@Html.ActionLink($"{restaurant.Name}", "Details", new{ id = restaurant.RestaurantId})</li>;
+}
+<h3>@Html.ActionLink("Home", "Index", "Home")</h3>
