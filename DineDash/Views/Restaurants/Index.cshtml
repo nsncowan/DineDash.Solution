@@ -2,8 +2,8 @@
   Layout = "_Layout";
 }
 
-
 @using DineDash.Models;
+@model List<DineDash.Models.Restaurant>;
 
 <h1>Restaurants</h1>
 
@@ -14,6 +14,6 @@
 
 @foreach (Restaurant restaurant in Model)
 {
-  <li>@Html.ActionLink($"{restaurant.Name}", "Details", new{ id = restaurant.RestaurantId})</li>;
+  <li>@Html.ActionLink($"{restaurant.Name}", "Details", new{ id = restaurant.RestaurantId}) | @restaurant.Cuisine.Name</li>;
 }
 <h3>@Html.ActionLink("Home", "Index", "Home")</h3>
