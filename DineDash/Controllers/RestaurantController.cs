@@ -45,6 +45,14 @@ namespace DineDash.Controllers
       Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
       return View(thisRestaurant);
     }
+    [HttpPost , ActionName("Details")]
+    public ActionResult AddFavorite(int id)
+    {
+      Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+      thisRestaurant.Favorite++;
+      _db.SaveChanges();
+      return RedirectToAction("Favorites");
+    }
 
     public ActionResult Delete(int id)
     {
@@ -79,17 +87,18 @@ namespace DineDash.Controllers
      public ActionResult Favorites()
     {
       List<Restaurant> model = _db.Restaurants
-                                  .Include(restaurant => restaurant.Favorite > 0)
+                                  .Where(restaurant => restaurant.Favorite > 0)
                                   .ToList();
       return View(model);
     }
-    [HttpPost ]
-    public ActionResult Favorites(int id)
-    {
-      Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
-      thisRestaurant.Favorite++; 
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
+    // [HttpPost ]
+    // public ActionResult Favorites(int id)
+    // {
+    //   Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+    //   thisRestaurant.Favorite++; 
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
+    
   }
 }

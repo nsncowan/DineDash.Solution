@@ -8,10 +8,10 @@
 <hr/>
 <h3> @Html.DisplayNameFor(model => model.Name) : @Html.DisplayFor(model => model.Name)</h3>
 
-@using (Html.BeginForm("Favorites", "Restaurant"))
+@using (Html.BeginForm())
 {
 @Html.HiddenFor(model => model.RestaurantId)
- <button type="submit" action="POST"  class="btn btn-primary">Add Favorite</button>
+ <button type="submit"class="btn btn-primary">Add Favorite</button>
 @* @Html.LabelFor(model => model.Favorite)
 <input type="submit" value="Save" /> *@
 

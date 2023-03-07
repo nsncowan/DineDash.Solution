@@ -10,8 +10,9 @@
 {
   <h3>No Favorites</h3>
 } 
-
+<ul>
 @foreach (Restaurant restaurant in Model)
 {
-  <li> @restaurant.Name</li>;
+  <li>@Html.ActionLink($"{restaurant.Name}", "Details", new{ id = restaurant.RestaurantId})</li>;
 }
+</ul>
