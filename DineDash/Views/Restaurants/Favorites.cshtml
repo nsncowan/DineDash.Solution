@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@using DineDash.Models;
+@model List<DineDash.Models.Restaurant>;
+  <h1>Restaurants</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No Favorites</h3>
+} 
+
+@foreach (Restaurant restaurant in Model)
+{
+  <li> @restaurant.Name</li>;
+}

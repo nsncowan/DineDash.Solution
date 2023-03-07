@@ -60,5 +60,36 @@ namespace DineDash.Controllers
     _db.SaveChanges();
     return RedirectToAction("Index");
     }
+
+    public ActionResult Edit(int id)
+    {
+      Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+      ViewBag.CuisineId = new SelectList(_db.Cuisines, "CuisineId", "Name");
+      return View(thisRestaurant);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Restaurant restaurant)
+    {
+      _db.Restaurants.Update(restaurant);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+     public ActionResult Favorites()
+    {
+      List<Restaurant> model = _db.Restaurants
+                                  .Include(restaurant => restaurant.Favorite > 0)
+                                  .ToList();
+      return View(model);
+    }
+    [HttpPost ]
+    public ActionResult Favorites(int id)
+    {
+      Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+      thisRestaurant.Favorite++; 
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }

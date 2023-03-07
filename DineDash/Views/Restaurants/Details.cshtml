@@ -8,8 +8,17 @@
 <hr/>
 <h3> @Html.DisplayNameFor(model => model.Name) : @Html.DisplayFor(model => model.Name)</h3>
 
+@using (Html.BeginForm("Favorites", "Restaurant"))
+{
+@Html.HiddenFor(model => model.RestaurantId)
+ <button type="submit" action="POST"  class="btn btn-primary">Add Favorite</button>
+@* @Html.LabelFor(model => model.Favorite)
+<input type="submit" value="Save" /> *@
+
+}
 @* <h3> @Html.DisplayNameFor(model => model.Cuisine) : @Html.DisplayFor(model => model.Cusine)</h3> *@
 
+<p>@Html.ActionLink("Edit Restaurant", "Edit", new{id = Model.RestaurantId})</p>
 
 <p>@Html.ActionLink("Delete Item", "Delete", new { id = Model.RestaurantId })</p>
 

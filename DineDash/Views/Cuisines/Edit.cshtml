@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@model DineDash.Models.Cuisine
+
+<h2>Edit</h2>
+
+<h4>Edit this cuisine: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.CuisineId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+
+  @* @Html.LabelFor(model => model.CuisineId)
+  @Html.DropDownList("CuisineId") *@
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

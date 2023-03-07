@@ -13,6 +13,8 @@
   @Html.LabelFor(model => model.Cuisine)
   @Html.DropDownList("CuisineId")
 
+  @Html.CheckBox("Favorite", true)
+
   <input type = "submit" value="Add a new Restaurant" />
 }
 <p>@Html.ActionLink("Show all Restaurants", "Index")</p>
