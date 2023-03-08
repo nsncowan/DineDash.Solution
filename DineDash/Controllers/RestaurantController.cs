@@ -45,11 +45,12 @@ namespace DineDash.Controllers
       Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
       return View(thisRestaurant);
     }
+    
     [HttpPost , ActionName("Details")]
     public ActionResult AddFavorite(int id)
     {
       Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
-      thisRestaurant.Favorite++;
+      thisRestaurant.Favorite=1;
       _db.SaveChanges();
       return RedirectToAction("Favorites");
     }
