@@ -7,7 +7,10 @@ namespace DineDash.Models
     public string Name {get; set;}
 
     public int Favorite{get; set;}
+
+    public int Rating{get; set;}
     public Cuisine Cuisine {get; set;}
+
 
   }
 }

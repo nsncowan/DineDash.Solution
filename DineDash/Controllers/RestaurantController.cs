@@ -45,13 +45,32 @@ namespace DineDash.Controllers
       Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
       return View(thisRestaurant);
     }
-    [HttpPost , ActionName("Details")]
-    public ActionResult AddFavorite(int id)
+    // [HttpPost , ActionName("Details")]
+    // public ActionResult AddFavorite(int id)
+    // {
+    //   Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+    //   thisRestaurant.Favorite=1;
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Favorites");
+    // }
+     [HttpPost , ActionName("Details")]
+    public ActionResult HandleButtons(int id, string buttonType)
     {
       Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
-      thisRestaurant.Favorite++;
+      if(buttonType =="Favorite")
+      {
+        thisRestaurant.Favorite=1;
       _db.SaveChanges();
       return RedirectToAction("Favorites");
+      }
+      if (buttonType =="Rating")
+      {
+      ViewBag.ratingNum = new SelectList(_db.Restaurants, "RestaurantId", "Rating");
+      thisRestaurant.Rating += int.Parse(ViewBag.ratingNum);
+      _db.SaveChanges();
+      return RedirectToAction("Details");
+      }
+      return RedirectToAction("Details");
     }
 
     public ActionResult Delete(int id)
