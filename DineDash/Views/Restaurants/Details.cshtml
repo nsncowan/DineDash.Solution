@@ -2,6 +2,7 @@
   Layout = "_Layout";
 }
 
+
 @model DineDash.Models.Restaurant
 
 <h2>Restaurant Details</h2>
@@ -16,10 +17,10 @@
 <input type="submit" value="Favorite" /> *@
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Ratings", "Restaurants", FormMethod.Post))
 {
-@Html.HiddenFor(model => model.RestaurantId)
-@Html.DropDownList("Rating", new List<SelectListItem>
+@Html.Hidden("id", Model.RestaurantId)
+@Html.DropDownListFor(model => model.Rating, new List<SelectListItem>
 { 
       new SelectListItem { Text = "1", Value = "1", Selected=true},
       new SelectListItem { Text = "2", Value = "2"},
@@ -27,9 +28,7 @@
       new SelectListItem { Text = "4", Value = "4"},
       new SelectListItem { Text = "5", Value = "5"}
 }, "Choose Rating") 
-<button type="submit"class="btn btn-primary" value="Rating" name="buttonType">Submit Rating</button>
-@* @Html.LabelFor(model => model.Favorite)
-<input type="submit" value="Save" /> *@
+<button type="submit"class="btn btn-primary">Submit Rating</button>
 }
 
 

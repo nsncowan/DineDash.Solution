@@ -54,23 +54,24 @@ namespace DineDash.Controllers
     //   return RedirectToAction("Favorites");
     // }
      [HttpPost , ActionName("Details")]
-    public ActionResult HandleButtons(int id, string buttonType)
+    public ActionResult AddFavorite(int id)
     {
       Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
-      if(buttonType =="Favorite")
-      {
+     
         thisRestaurant.Favorite=1;
       _db.SaveChanges();
       return RedirectToAction("Favorites");
-      }
-      if (buttonType =="Rating")
-      {
-      ViewBag.ratingNum = new SelectList(_db.Restaurants, "RestaurantId", "Rating");
-      thisRestaurant.Rating += int.Parse(ViewBag.ratingNum);
+    }
+     [HttpPost, ActionName("Ratings")] 
+     public ActionResult AddRating(int id, int rating)
+     {
+      Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+
+      thisRestaurant.Rating = rating;  
+      
       _db.SaveChanges();
-      return RedirectToAction("Details");
-      }
-      return RedirectToAction("Details");
+  
+      return RedirectToAction("Details", new { id = id});
     }
 
     public ActionResult Delete(int id)
@@ -107,6 +108,14 @@ namespace DineDash.Controllers
     {
       List<Restaurant> model = _db.Restaurants
                                   .Where(restaurant => restaurant.Favorite > 0)
+                                  .ToList();
+      return View(model);
+    }
+
+     public ActionResult Ratings()
+    {
+      List<Restaurant> model = _db.Restaurants
+                                  .Where(restaurant => restaurant.Rating > 0)
                                   .ToList();
       return View(model);
     }
